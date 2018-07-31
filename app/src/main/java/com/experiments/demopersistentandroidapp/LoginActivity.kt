@@ -71,7 +71,16 @@ class RootActivity: AppCompatActivity(), ClearOnRestore.NoClearActivity {
 
     override fun onResume() {
         super.onResume()
-        getPersistent().startFirstActivity(this)
+        if (isLaunched) {
+            finish()
+        } else {
+            getPersistent().startFirstActivity(this)
+            isLaunched = true
+        }
+    }
+
+    companion object {
+        var isLaunched = false
     }
 }
 
