@@ -62,28 +62,6 @@ class MyApplication: Application() {
 }
 
 
-class RootActivity: AppCompatActivity(), ClearOnRestore.NoClearActivity {
-    private fun getPersistent() = thePersistent
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_verify)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (isLaunched) {
-            finish()
-        } else {
-            getPersistent().startFirstActivity(this)
-            isLaunched = true
-        }
-    }
-
-    companion object {
-        var isLaunched = false
-    }
-}
-
 val thePersistent = MyPersistent()
 
 class MyPersistent {
